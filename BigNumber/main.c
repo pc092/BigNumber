@@ -11,6 +11,7 @@ int carr[2 * LEN] = { 0 };
 
 int main(void) {
 	test();
+	printf("abc");
 	return 0;
 }
 
@@ -33,12 +34,12 @@ void init() {
 		resultAnswer[i] = 0;
 		carr[i] = 0;
 	}
-	isMul = 0; 
+	isMul = 0;
 	isPositive = 1;
 }
 
 void checkWhichBiggerAndWriteReverse(char no1[], char no2[], bool isNo1Negative) {
-	//§PÂ_¥¿­t
+	//ï¿½Pï¿½_ï¿½ï¿½ï¿½t
 	if (no1Length > no2Length) {
 		isPositive = !isNo1Negative;
 		writeInReverseArr(no1, no2, false);
@@ -62,7 +63,7 @@ void checkWhichBiggerAndWriteReverse(char no1[], char no2[], bool isNo1Negative)
 
 void writeInReverseArr(char no1[], char no2[], bool needSwitch) {
 	switch (needSwitch) {
-		case true://switch //§âµ´¹ï­È¤jªº©ñ«e­±   ex: -1+2 = -(2-1)
+		case true://switch //ï¿½âµ´ï¿½ï¿½ï¿½È¤jï¿½ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½   ex: -1+2 = -(2-1)
 			for (int i = 0; i < no1Length; i++)	reverseNo2[i] = no1[no1Length - i - 1] - '0';
 			for (int i = 0; i < no2Length; i++)	reverseNo1[i] = no2[no2Length - i - 1] - '0';
 			break;
@@ -77,15 +78,15 @@ void startCouning(char no1[], char no2[], int type) {
 	no1Length = strlen(no1);
 	no2Length = strlen(no2);
 
-	//¯u¥¿¥[ //¯u¥¿­¼
+	//ï¿½uï¿½ï¿½ï¿½[ //ï¿½uï¿½ï¿½ï¿½ï¿½
 	if (type == 1 || type == 4){
 		writeInReverseArr(no1, no2, false);
 		calculation(true);
-	}//¯u¥¿´î
+	}//ï¿½uï¿½ï¿½ï¿½ï¿½
 	else if(type == 2){
 		checkWhichBiggerAndWriteReverse(no1, no2, true);
 		calculation(false);
-	}//¯u¥¿´î
+	}//ï¿½uï¿½ï¿½ï¿½ï¿½
 	else if(type == 3){
 		checkWhichBiggerAndWriteReverse(no1, no2, false);
 		calculation(false);
@@ -100,7 +101,7 @@ void calculation(bool isRealAdd) {
 			for (int i = 0; i < LEN; ++i){
 				for (int j = 0; i + j < LEN; ++j) {
 					if (reverseNo1[i] == 0 || reverseNo1[i] == -3 || reverseNo2[j] == -3)	continue;
-					//char½d³ò±q -128 ¨ì 127
+					//charï¿½dï¿½ï¿½ï¿½q -128 ï¿½ï¿½ 127
 					while (127 - resultAnswer[i + j] < reverseNo1[i] * reverseNo2[j]){
 						carr[i + j + 1] += resultAnswer[i + j] / 10;
 						resultAnswer[i + j] %= 10;
@@ -111,7 +112,7 @@ void calculation(bool isRealAdd) {
 		}
 		else {
 			for (int i = 0; i < LEN; i++) {
-				//ªø«×¤@¼Ë //ASCII - '0' ©Ò¥H'-' = -3
+				//ï¿½ï¿½ï¿½×¤@ï¿½ï¿½ //ASCII - '0' ï¿½Ò¥H'-' = -3
 				if (reverseNo1[i] == -3 && reverseNo2[i] == -3)	resultAnswer[i] = 0;
 				else if (reverseNo1[i] == -3)	resultAnswer[i] = reverseNo2[i];
 				else if (reverseNo2[i] == -3)	resultAnswer[i] = reverseNo1[i];
@@ -163,7 +164,7 @@ void minusBorrow() {
 }
 
 void Add(char no1[], char no2[]) {
-	//­t­t/­t¥¿/¥¿­t/¥¿¥¿ //'-'ªºASCII = 45
+	//ï¿½tï¿½t/ï¿½tï¿½ï¿½/ï¿½ï¿½ï¿½t/ï¿½ï¿½ï¿½ï¿½ //'-'ï¿½ï¿½ASCII = 45
 	if (no1[0] == 45 && no2[0] == 45) {
 		isPositive = 0;
 		startCouning(no1, no2, 1);
@@ -173,7 +174,7 @@ void Add(char no1[], char no2[]) {
 }
 
 void Subtract(char no1[], char no2[]) {
-	//­t­t/­t¥¿/¥¿­t/¥¿¥¿ ---- ­t´î­t = ­t¥[¥¿ = Add ªºtype 2...¥H¦¹Ãþ±À
+	//ï¿½tï¿½t/ï¿½tï¿½ï¿½/ï¿½ï¿½ï¿½t/ï¿½ï¿½ï¿½ï¿½ ---- ï¿½tï¿½ï¿½ï¿½t = ï¿½tï¿½[ï¿½ï¿½ = Add ï¿½ï¿½type 2...ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (no1[0] == 45 && no2[0] == 45)	startCouning(no1, no2, 2);
 	else if (no1[0] == 45) {
 		isPositive = 0;
@@ -194,7 +195,7 @@ void excuteOperation(char no1[], char no2[], char operator[]) {
 	if (operator[0] == '+') Add(no1, no2);
 	else if (operator[0] == '-') Subtract(no1, no2);
 	else if (operator[0] == '*') Multiply(no1, no2);
-}	
+}
 
 void test() {
 	excuteOperation("9999999", "987", "+");	printf("+10000986\n\n");
